@@ -10,6 +10,7 @@
     .messages {
         border: 1px solid blue;
         height: 400px;
+        overflow-y: auto;
     }
     .chatForm {
         border: 1px solid orange;

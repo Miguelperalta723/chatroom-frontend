@@ -4,7 +4,7 @@ export const axiosWithAuth = () => {
     const token = localStorage.getItem('token');
 
     return axios.create({
-        baseURL: "localhost:5000",
+        baseURL: "https://chatroom-back.herokuapp.com/",
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `${token}`,

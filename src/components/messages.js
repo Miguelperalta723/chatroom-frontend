@@ -8,17 +8,35 @@ import './messages.scss'
 
 const Messages = (props) => {
     const [messages, setMessages] = useState([])
-    // useEffect(() => {
-    //     axiosWithAuth()
-    //     .get('api/messages/messages')
-    //     .then(res =>{
-    //         console.log(res.data.response)
-    //         setMessages(res.data.response)
-    //     })
-    //     .catch(err => {
-    //         console.log(err)
-    //     })
-    // },[])
+    const [text, setText] = useState({text: ""})
+
+    const handleChange = (e) => {
+        setText({...text, [e.target.name]: e.target.value})
+    }
+
+
+    useEffect(() => {
+        axiosWithAuth()
+        .get('api/messages/messages')
+        .then(res =>{
+            setMessages(res.data.response)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    },[messages])
+
+      const send = (e) => {
+        e.preventDefault()
+        axiosWithAuth()
+        .post('/api/messages/add', text)
+        .then(res => {
+            setText({text: ""})
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
 
     const logout = () => {
         console.log(props)
@@ -26,17 +44,26 @@ const Messages = (props) => {
         props.history.push("/login")
     }
 
-    console.log(props)
     return (
         <div className="messages-container">
             <div className="messages">
-                {/* {messages.map()} */}
+                {messages.map(mess => {
+                    return <p key={mess.id}>{mess.text}</p>
+                })}
             </div>
             <div className="chatForm"> 
-                <ChatForm />
-                <button onClick={logout}>log out</button>
+                <form className="text-form" onSubmit={send}>
+                <input    
+                    type="text"
+                    name="text"
+                    value={text.text}
+                    onChange={handleChange}
+                />
+                 <button >send</button>
+                </form>
+               
             </div>
-            
+            <button onClick={logout}>log out</button>
             
         </div>
     )

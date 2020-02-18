@@ -2,20 +2,17 @@ import React, {useState} from 'react';
 import {axiosWithAuth} from '../utils/axiosAuth.js'
 
 const ChatForm = (props) => {
-    const [text, setText] = useState("")
-    
-    const send = e => {
-        e.preventDefault();
-        axiosWithAuth()
-        .post('/api/messages/add', text)
-        .then(res => {
-            console.log(res)
-        })
-    }
+    const [text, setText] = useState({text: ""})
 
     const handleChange = (e) => {
-        setText(e.target.value)
+        setText({...text, [e.target.name]: e.target.value})
     }
+
+    const send = e => {
+        e.preventDefault()
+        props.send(text)
+    }
+
 
     console.log(text)
 
@@ -26,6 +23,7 @@ const ChatForm = (props) => {
                     type="text"
                     name="text"
                     onChange={handleChange}
+                    value={text.value}
                 />
                 <button>send</button>
             </form>
