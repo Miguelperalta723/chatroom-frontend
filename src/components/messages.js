@@ -63,7 +63,7 @@ const Messages = (props) => {
                 </form>
                
             </div>
-            <button onClick={logout}>log out</button>
+            <button className="logout" onClick={logout}>log out</button>
             
         </div>
     )
