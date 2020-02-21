@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Route } from 'react-router-dom';
+import { Route , Switch } from 'react-router-dom';
 import { PrivateRoute } from './components/PrivateRoute.js'
 
 
@@ -16,10 +16,13 @@ import Home from './components/Home.js'
 function App() {
   return (
     <div className="App">
-      <Route exact path="/" component={Home} />
+      <Switch>
      <PrivateRoute path="/chat" component={Messages} />
      <Route path="/login" component={FormikLoginForm} />
      <Route path="/register" component={RegisterForm} />
+     <Route path="/" component={Home} />
+      </Switch>
+      
     </div>
   );
 }
