@@ -60,6 +60,7 @@ const Messages = (props) => {
                     onChange={handleChange}
                 />
                  <button >send</button>
+                 <button>delete</button>
                 </form>
                
             </div>
