@@ -17,10 +17,10 @@ function App() {
   return (
     <div className="App">
       <Switch>
-     <PrivateRoute path="/chat" component={Messages} />
-     <Route path="/login" component={FormikLoginForm} />
-     <Route path="/register" component={RegisterForm} />
-     <Route path="/" component={Home} />
+        <PrivateRoute path="/chat" component={Messages} />
+        <Route path="/login" component={FormikLoginForm} />
+        <Route path="/register" component={RegisterForm} />
+        <Route path="/" component={Home} />
       </Switch>
       
     </div>
